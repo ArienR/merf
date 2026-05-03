@@ -40,7 +40,7 @@ def _check_load() -> None:
     load = os.getloadavg()[0]
     if load > cpu_count * _LOAD_THRESHOLD:
         print(
-            f"⚠  System load is high ({load:.1f} on {cpu_count} cores). "
+            f"System load is high ({load:.1f} on {cpu_count} cores). "
             "Measurements may be noisy.",
             file=sys.stderr,
         )
