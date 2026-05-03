@@ -1,0 +1,21 @@
+# Virtual environment
+.venv/
+
+# Python bytecode — auto-generated when Python imports a module, platform-specific
+__pycache__/
+*.pyc
+*.pyo
+
+# Editable install metadata — created by `pip install -e .`, regenerated on reinstall
+src/*.egg-info/
+
+# Build output — produced by `hatchling build`, not source
+dist/
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# macOS
+.DS_Store
