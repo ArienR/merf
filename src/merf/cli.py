@@ -108,7 +108,7 @@ def check(
     click.echo(f"{'command':{w}}  |  {command_str}")
     click.echo(f"{'runs':{w}}  |  {repeat} (+ {WARMUP_RUNS} warmup discarded)")
     click.echo()
-    click.echo(f"             baseline    current    delta")
+    click.echo("             baseline    current    delta")
     click.echo(f"  median     {stored.median:.3f}s      {stats.median:.3f}s     {delta_percent:+.1f}%")
     click.echo(f"  p95        {stored.p95:.3f}s      {stats.p95:.3f}s     {p95_delta_percent:+.1f}%")
     click.echo()
