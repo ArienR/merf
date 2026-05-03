@@ -1,6 +1,5 @@
-import dataclasses
 import json
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 SCHEMA_VERSION = 1
@@ -23,7 +22,7 @@ class BaselineData:
 def save_baseline(name: str, data: BaselineData) -> None:
     _MERF_DIR.mkdir(exist_ok=True)
     path = _MERF_DIR / f"{name}.json"
-    path.write_text(json.dumps(dataclasses.asdict(data), indent=2), encoding="utf-8")
+    path.write_text(json.dumps(asdict(data), indent=2), encoding="utf-8")
 
 
 def load_baseline(name: str) -> BaselineData:

@@ -96,11 +96,8 @@ def check(
 
     stats = compute_stats(samples)
 
-    if stored.median == 0.0:
-        raise click.ClickException("Baseline median is zero — cannot compute regression percentage.")
-
     delta_percent = (stats.median - stored.median) / stored.median * 100
-    p95_delta_percent = (stats.p95 - stored.p95) / stored.p95 * 100 if stored.p95 != 0.0 else 0.0
+    p95_delta_percent = (stats.p95 - stored.p95) / stored.p95 * 100
     passed = delta_percent <= max_regression
 
     w = len("merf check")

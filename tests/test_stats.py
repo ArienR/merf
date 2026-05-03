@@ -23,17 +23,18 @@ class TestMedian:
 
 
 class TestP95:
-    def test_is_maximum_for_small_n(self) -> None:
-        # With ≤10 samples the 95th percentile rank always falls on the last value
+    def test_interpolates_for_small_n(self) -> None:
+        # index = 0.95 * (5-1) = 3.8 → 0.4 * 0.2 + 0.5 * 0.8 = 0.48
+        # With interpolation p95 is between the top two values, not the maximum.
         samples = [0.1, 0.2, 0.3, 0.4, 0.5]
         result = compute_stats(samples)
-        assert result.p95 == pytest.approx(max(samples))
+        assert result.p95 == pytest.approx(0.48)
 
-    def test_correct_rank_for_20_samples(self) -> None:
-        # Using the nearest-rank method: rank = ceil(0.95 * 20) = 19, so index 18
+    def test_interpolated_value_for_20_samples(self) -> None:
+        # index = 0.95 * (20-1) = 18.05 → 0.19 * 0.95 + 0.20 * 0.05 = 0.1905
         samples = [i * 0.01 for i in range(1, 21)]  # [0.01, 0.02, ..., 0.20]
         result = compute_stats(samples)
-        assert result.p95 == pytest.approx(0.19)
+        assert result.p95 == pytest.approx(0.1905)
 
     def test_exceeds_median_for_right_skewed_data(self) -> None:
         # 18 fast runs with 2 slow outliers — p95 should capture the outliers,

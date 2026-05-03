@@ -11,8 +11,18 @@ class Stats:
 
 def compute_stats(samples: list[float]) -> Stats:
     sorted_samples = sorted(samples)
-    p95_index = math.ceil(0.95 * len(sorted_samples)) - 1
     return Stats(
         median=statistics.median(sorted_samples),
-        p95=sorted_samples[p95_index],
+        p95=_p95(sorted_samples),
     )
+
+
+def _p95(sorted_samples: list[float]) -> float:
+    n = len(sorted_samples)
+    index = 0.95 * (n - 1)
+    lower = math.floor(index)
+    upper = math.ceil(index)
+    if lower == upper:
+        return sorted_samples[lower]
+    weight = index - lower
+    return sorted_samples[lower] * (1 - weight) + sorted_samples[upper] * weight
