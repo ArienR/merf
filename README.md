@@ -7,7 +7,7 @@ merf times a shell command over multiple runs, stores a baseline, and exits non-
 Requires Python 3.12+.
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/ArienR/merf.git
 cd merf
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
@@ -101,4 +101,4 @@ merf measures wall-clock time. Results are only meaningful when conditions are c
 
 **Machine specificity:** a baseline recorded on one machine is not a reliable reference on another. The intended use is a single consistent environment — your laptop, or a fixed CI runner — where both baseline and check run on the same hardware.
 
-**On Docker:** on macOS, Docker runs inside a Linux VM, adding scheduling overhead that makes timing *less* reliable. merf does not support container isolation.
+**On Docker:** On certain operating systems, Docker runs inside a Linux VM, adding scheduling overhead that makes timing *less* reliable. merf does not support container isolation.
